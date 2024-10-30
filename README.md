@@ -1,2 +1,8 @@
 # template.sh
-Template shell script project
+
+POSIX shell template project
+
+## Versioning
+
+- Tags - stable SemVer
+- `main` branch - unstable
