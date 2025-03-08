@@ -1,24 +1,24 @@
 #!/usr/bin/env sh
-# shellcheck disable=SC2251 # '&& exit 1' inverts errexit, but '!' also inverts exit codes
+# shellcheck disable=SC2251 # '!' should invert and override exit codes
 ## Strict mode
 set -eu
-IFS="$(printf "\n\t")"
+IFS="$(printf '\n')"
 readonly IFS
-## Prologue
+## Constants
 test_script_path="$(
-    script_directory="$(dirname -- "${0}")"
-    cd -- "${script_directory}" >/dev/null 2>&1
-    pwd -P
+	script_directory="$(dirname -- "${0}")"
+	cd -- "${script_directory}" >/dev/null 2>&1
+	pwd -P
 )"
 test_template_sh="${test_script_path}/template.sh"
 readonly test_template_sh test_script_path
-## Pass-fail tests
+## Test
 (
-    set -x
-    # Help
-    "${test_template_sh}" -h
-    "${test_template_sh}" --help
-    "${test_template_sh}"
-    ! "${test_template_sh}" --test
-    ! "${test_template_sh}" -h test
+	set -x
+	# Script
+	"${test_template_sh}"
+	# Help
+	"${test_template_sh}" -h
+	! "${test_template_sh}" --test
+	! "${test_template_sh}" -h test
 ) >/dev/null
