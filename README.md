@@ -1,3 +1,3 @@
 # template.sh
 
-POSIX shell script template
+POSIX shell template project
