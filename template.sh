@@ -1,16 +1,7 @@
 #!/usr/bin/env sh
-## Strict mode
 set -eu
 IFS="$(printf '\n')"
-readonly IFS
-## Constants
-template_script_path="$(
-	script_directory="$(dirname -- "${0}")"
-	cd -- "${script_directory}" >/dev/null 2>&1
-	pwd -P
-)"
-# shellcheck disable=SC2034
-readonly template_script_path
+template_script_dir="$(cd -- "$(dirname -- "${0}")" && pwd -P)"
 ## CLI
 template_help() {
 	printf 'POSIX shell script template\n\nUsage:\n\t%s' \
